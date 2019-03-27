@@ -171,6 +171,6 @@
     <orderEntry type="library" name="Maven: org.apache.flink:flink-connector-kafka-base_2.11:1.7.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.flink:flink-avro-confluent-registry:1.7.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.flink:flink-avro:1.7.2" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.flink:flink-table_2.11:1.7.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.flink:flink-table_2.11:1.7.2" level="project" />
   </component>
 </module>
