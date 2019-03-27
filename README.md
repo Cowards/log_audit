@@ -28,15 +28,15 @@ memorySeconds String,
 vcoreSeconds String,
 applicationType String
 )
-row format delimited fields terminated by "||"
-partitioned by (day String);
+partitioned by (dy string) 
+row format delimited fields terminated by '||';
 
 create external table log_audit_supply_info(
 applicationId String,
 sql_info String
 )
-row format delimited fields terminated by "||"
-partitioned by (day String);
+partitioned by (dy string) 
+row format delimited fields terminated by '||';
 
 ```
 
