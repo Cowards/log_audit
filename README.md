@@ -40,7 +40,7 @@ row format delimited fields terminated by '||';
 
 ```
 
-##kafkaTopic
+## kafkaTopic
 ```topic
 log_audit_base
 log_audit_supply
