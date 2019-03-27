@@ -39,3 +39,10 @@ row format delimited fields terminated by "||"
 partitioned by (day String);
 
 ```
+
+##kafkaTopic
+```topic
+log_audit_base
+log_audit_supply
+
+```
