@@ -174,11 +174,6 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>flink.LogAudit</mainClass>
-                        </manifest>
-                    </archive>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
@@ -193,50 +188,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>scala-maven-plugin</artifactId>
-                <version>3.2.2</version>
-                <executions>
-                    <execution>
-                        <id>eclipse-add-source</id>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>scala-compile-first</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>scala-test-compile-first</id>
-                        <phase>process-test-resources</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>attach-scaladocs</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>doc-jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <scalaVersion>2.11.12</scalaVersion>
-                    <recompileMode>incremental</recompileMode>
-                    <useZincServer>true</useZincServer>
-                    <args>
-                        <arg>-unchecked</arg>
-                        <arg>-deprecation</arg>
-                        <arg>-feature</arg>
-                    </args>
-                </configuration>
-            </plugin>-->
+
         </plugins>
     </build>
 
