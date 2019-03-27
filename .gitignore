@@ -25,3 +25,4 @@ target/classes.timestamp
 target/test-classes/
 .idea/*
 .idea
+target/classes/
