@@ -1,17 +1,14 @@
 package flink
 
-import bean.Kafka_Constant
 import source.FlinkKafkaSource
 
 object LogAudit {
-  def main(args: Array[String]): Unit = {
-    val zookeeperhost = Kafka_Constant.ZOOKEEPER_HOST
-    val kafkabroker = Kafka_Constant.KAFKA_BROKER
-    val transactiongroup = Kafka_Constant.TRANSACTION_GROUP
-    //将需要消费的多个topic写入list
-    val kafkaList: List[String]= List("test-demo", "kafka-demo", "flink-demo")
-    val topicKafka = "kafka-flink-log-test"
-    FlinkKafkaSource.getKafkaSource(zookeeperhost,kafkabroker,transactiongroup,topicKafka)
+  private val ZOOKEEPER_HOST = "cdh4:2181,cdh5:2181,cdh6:2181"
+  private val KAFKA_BROKER = "cdh4:9092,cdh5:9092,cdh6:9092"
+  private val TRANSACTION_GROUP = "audit_sql_group"
 
+  def main(args: Array[String]): Unit = {
+    val topicKafka = "audit_sql"
+    FlinkKafkaSource.getKafkaSource(ZOOKEEPER_HOST,KAFKA_BROKER,TRANSACTION_GROUP,topicKafka)
   }
 }
