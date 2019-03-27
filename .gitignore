@@ -23,4 +23,5 @@
 hs_err_pid*
 target/classes.timestamp
 target/test-classes/
+.idea/*
 .idea
