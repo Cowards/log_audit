@@ -10,7 +10,6 @@ import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.connectors.fs.bucketing.{BucketingSink, DateTimeBucketer}
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer08
 import _root_.java.time.ZoneId
-import java.lang.reflect.Array
 
 object LogAuditFlowSupply {
   private val ZOOKEEPER_HOST = "cdh4:2181,cdh5:2181,cdh6:2181"
