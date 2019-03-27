@@ -25,7 +25,8 @@ object LogAuditFlowSupply {
   //sink名
   private val sink_2_hdfs_supply = "sink_2_hdfs_supply"
   //sourceMethod
-  def main(zookeeper: String, bootstrap: String, groupid: String): Unit = {
+
+  def main(args: Array[String]): Unit = {
     //获取当前的环境
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     env.getCheckpointConfig.setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE)
@@ -35,10 +36,10 @@ object LogAuditFlowSupply {
     //kafka consumer
     val kafkaProps = new Properties()
     //连接zookeeper
-    kafkaProps.setProperty("zookeeper.connect", zookeeper)
+    kafkaProps.setProperty("zookeeper.connect", ZOOKEEPER_HOST)
     //连接kafkaBroker
-    kafkaProps.setProperty("bootstrap.servers", bootstrap)
-    kafkaProps.setProperty("group.id", groupid)
+    kafkaProps.setProperty("bootstrap.servers", KAFKA_BROKER)
+    kafkaProps.setProperty("group.id", TRANSACTION_GROUP)
     val kafkaConsumer = new FlinkKafkaConsumer08[String](topicKafka_supply, new SimpleStringSchema(), kafkaProps)
     val transac = env.addSource(kafkaConsumer).setParallelism(2).name(kafka_source_supply)
 
