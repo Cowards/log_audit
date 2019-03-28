@@ -1,6 +1,13 @@
 # log_audit
 
 
+
+##To ALL 
+
+ * 2019年03月29日 `release v1.0` 发布。
+ 
+
+
 ## start
 
 
@@ -60,3 +67,12 @@ ALTER TABLE udt.log_audit_supply_info2 ADD IF NOT EXISTS PARTITION (dt='2019-03-
 log_audit_base
 log_audit_supply
 ```
+
+
+## TODO
+
+* 支持自定义组建扫描日志
+
+* 支持特殊操作告警
+
+* 代码规范
