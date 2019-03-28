@@ -45,6 +45,7 @@ object LogAuditFlowSupply {
     kafkaProps.setProperty("group.id", TRANSACTION_GROUP)
     val kafkaConsumer = new FlinkKafkaConsumer08[String](topicKafka_supply, new SimpleStringSchema(), kafkaProps)
     val transac = env.addSource(kafkaConsumer).setParallelism(2).name(kafka_source_supply)
+
     val dateTimeBucketer = new Date()
     val fdf = FastDateFormat.getInstance("yyyy-MM-dd")
     val dateTimeBucketerStr = fdf.format(dateTimeBucketer)

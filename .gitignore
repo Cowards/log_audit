@@ -26,3 +26,4 @@ target/test-classes/
 .idea/*
 .idea
 target/classes/
+test_log/hadoop-cmf-yarn-RESOURCEMANAGER-cdh-m2.sxkj.online.log.out
