@@ -78,7 +78,6 @@ object LogAuditFlowBase {
     val dateTimeBucketerStr = fdf.format(dateTimeBucketer)
     val hdfsPathSupply = s"hdfs:///tmp/table_temp/log_audit_kafka_flink_base/dt=${dateTimeBucketerStr}"
     val sink2hdfs = new BucketingSink[String](hdfsPathSupply)
-    sink2hdfs.setBucketer(new BasePathBucketer[String]())
     sink2hdfs.setBatchRolloverInterval(1 * 60 * 1000)
     sink2hdfs.setBatchSize(1024 * 1024 * 400); // this is 400 MB, sink.setBatchRolloverInterval(60* 60 * 1000); // this is 60 mins sink.setPendingPrefix(""); sink.setPendingSuffix(""); sink.setInProgressPrefix(".");
     sink2hdfs.setInactiveBucketThreshold(1L);
