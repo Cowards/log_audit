@@ -18,8 +18,8 @@ import org.apache.flink.streaming.connectors.fs.StringWriter
 
 object LogAuditFlowBase {
 
-  private val ZOOKEEPER_HOST = "cdh4:2181,cdh5:2181,cdh6:2181"
-  private val KAFKA_BROKER = "cdh4:9092,cdh5:9092,cdh6:9092"
+  private val ZOOKEEPER_HOST = "cdh1:2181,cdh2:2181,cdh3:2181"
+  private val KAFKA_BROKER = "cdh1:9092,cdh2:9092,cdh3:9092"
   private val TRANSACTION_GROUP = "audit_sql_group_base_1"
   //baseTopic
   private val topicKafka_base = "log_audit_base"
@@ -59,7 +59,8 @@ object LogAuditFlowBase {
     //若同时满足时间和类都匹配进行正则匹配和转换操作
     val filterValue = transac.filter(x => x.contains(today) && x.contains(className))
     val csvLine = filterValue.map(line => {
-      val pattern = new Regex("appId=(.+?),.*?,queue=(.+?),.*?,submitTime=(.+?),*,startTime=(.+?),*,finishTime=(.+?),*,finalStatus=(.+?),*,memorySeconds=(.+?),*,vcoreSeconds=(.+?),.*?,applicationType=(.+?),.*?", line)
+      //正则匹配规则
+      val pattern = new Regex("appId=(.+?),.*?,queue=(.+?),.*?,submitTime=(.+?),*,startTime=(.+?),*,finishTime=(.+?),*,finalStatus=(.+?),*,memorySeconds=(.+?),*,vcoreSeconds=(.+?),.*?,applicationType=(.+?),.*?",line)
       var temp_Line = "";
       for (m <- pattern.findAllIn(line).matchData; e <- m.subgroups) {
         temp_Line += e + "^"
