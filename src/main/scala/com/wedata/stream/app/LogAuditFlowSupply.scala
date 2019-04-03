@@ -17,11 +17,11 @@ import org.apache.flink.streaming.api.functions.sink.filesystem.BucketAssigner
 import org.apache.flink.streaming.connectors.fs.{NonRollingBucketer, RollingSink, StringWriter}
 
 object LogAuditFlowSupply {
-  private val ZOOKEEPER_HOST = "cdh4:2181,cdh5:2181,cdh6:2181"
-  private val KAFKA_BROKER = "cdh4:9092,cdh5:9092,cdh6:9092"
+  private val ZOOKEEPER_HOST = "cdh1:2181,cdh2:2181,cdh3:2181"
+  private val KAFKA_BROKER = "cdh1:9092,cdh2:9092,cdh3:9092"
   private val TRANSACTION_GROUP = "audit_sql_group_supply_4"
   //supplyTopic
-  private val topicKafka_supply = "log_audit_supply"
+  private val topicKafka_supply = "log_audit_supply_re"
   //kafkaSource名
   private val kafka_source_supply = "kafka_source_supply"
   //sink名
