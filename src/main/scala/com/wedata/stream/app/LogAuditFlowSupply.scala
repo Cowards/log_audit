@@ -54,7 +54,8 @@ object LogAuditFlowSupply {
     sink2hdfs.setBucketer(new BasePathBucketer[String]())
     sink2hdfs.setBatchSize(128 * 1024 * 1024) // this is 128 MB, block file
     sink2hdfs.setWriter(new StringWriter())
-    sink2hdfs.setBatchRolloverInterval(2000)
+    sink2hdfs.setInactiveBucketCheckInterval(1L)
+    sink2hdfs.setInactiveBucketThreshold(1L)
     transac.addSink(sink2hdfs).setParallelism(3).name(sink_2_hdfs_supply)
     env.execute()
   }
