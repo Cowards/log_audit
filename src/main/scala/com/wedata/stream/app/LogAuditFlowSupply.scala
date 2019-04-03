@@ -19,7 +19,7 @@ import org.apache.flink.streaming.connectors.fs.{NonRollingBucketer, RollingSink
 object LogAuditFlowSupply {
   private val ZOOKEEPER_HOST = "cdh1:2181,cdh2:2181,cdh3:2181"
   private val KAFKA_BROKER = "cdh1:9092,cdh2:9092,cdh3:9092"
-  private val TRANSACTION_GROUP = "audit_sql_group_supply_4"
+  private val TRANSACTION_GROUP = "audit_sql_group_supply_latest1"
   //supplyTopic
   private val topicKafka_supply = "log_audit_supply_re"
   //kafkaSource名
@@ -52,10 +52,10 @@ object LogAuditFlowSupply {
     val hdfsPathSupply =  s"hdfs:///tmp/table_temp/log_audit_kafka_flink_supply/dt=${dateTimeBucketerStr}"
     val sink2hdfs = new BucketingSink[String](hdfsPathSupply)
     sink2hdfs.setBucketer(new BasePathBucketer[String]())
-    sink2hdfs.setBatchSize(128 * 1024 * 1024) // this is 128 MB, block file
-    sink2hdfs.setWriter(new StringWriter())
+    sink2hdfs.setBatchRolloverInterval(1 * 60 * 1000)
+    sink2hdfs.setBatchSize(1024 * 1024 * 400); // this is 400 MB, sink.setBatchRolloverInterval(60* 60 * 1000); // this is 60 mins sink.setPendingPrefix(""); sink.setPendingSuffix(""); sink.setInProgressPrefix(".");
+    sink2hdfs.setInactiveBucketThreshold(1L);
     sink2hdfs.setInactiveBucketCheckInterval(1L)
-    sink2hdfs.setInactiveBucketThreshold(1L)
     transac.addSink(sink2hdfs).setParallelism(3).name(sink_2_hdfs_supply)
     env.execute()
   }

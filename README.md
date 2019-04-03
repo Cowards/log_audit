@@ -13,10 +13,10 @@
 
 ```bash
 
-cd /opt/flink/flink && bin/flink run -m yarn-cluster -ynm simple_kafka_LogAuditFlowSupply -c com.wedata.stream.app.LogAuditFlowSupply  /home/log_audit-1.0-SNAPSHOT-jar-with-dependencies.jar
+cd /opt/log-audit-conn/flink/flink-1.7.2 && sudo -u hdfs bin/flink run -m yarn-cluster -ynm simple_kafka_LogAuditFlowSupply -c com.wedata.stream.app.LogAuditFlowSupply  /home/log_audit-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 
-cd /opt/flink/flink &&  bin/flink run -m yarn-cluster -ynm simple_kafka_LogAuditFlowBase -c com.wedata.stream.app.LogAuditFlowBase  /home/log_audit-1.0-SNAPSHOT-jar-with-dependencies.jar
+cd /opt/log-audit-conn/flink/flink-1.7.2 && sudo -u hdfs  bin/flink run -m yarn-cluster -ynm simple_kafka_LogAuditFlowBase -c com.wedata.stream.app.LogAuditFlowBase  /home/log_audit-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 ```
 
@@ -56,9 +56,9 @@ row format delimited FIELDS TERMINATED by '^'
 LINES TERMINATED BY '\n'
 stored as textfile location 'hdfs:///tmp/table_temp/log_audit_kafka_flink_supply';
 
+select * from udt.log_audit_supply_info2;
 
-
-ALTER TABLE udt.log_audit_supply_info2 ADD IF NOT EXISTS PARTITION (dt='2019-04-02') LOCATION '/tmp/table_temp/log_audit_kafka_flink_supply/dt=2019-04-02';
+ALTER TABLE udt.log_audit_supply_info2 ADD IF NOT EXISTS PARTITION (dt='2019-04-03') LOCATION '/tmp/table_temp/log_audit_kafka_flink_supply/dt=2019-04-03';
 ```
 
 ## kafkaTopic
