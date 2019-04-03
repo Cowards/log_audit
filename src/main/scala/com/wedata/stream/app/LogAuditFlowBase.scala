@@ -22,7 +22,7 @@ object LogAuditFlowBase {
   private val KAFKA_BROKER = "cdh1:9092,cdh2:9092,cdh3:9092"
   private val TRANSACTION_GROUP = "audit_sql_group_base_1"
   //baseTopic
-  private val topicKafka_base = "log_audit_base"
+  private val topicKafka_base = "log_audit_base_re"
   //kafkaSource名
   private val kafka_source_base = "kafka_source_base"
   //sink名
