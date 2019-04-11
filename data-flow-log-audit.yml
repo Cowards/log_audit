@@ -1,0 +1,48 @@
+---
+- hosts: log_audit_exe
+  user: weadmin
+  vars:
+    soft_path: /opt/data-flow-log-audit
+    source_path: /var/lib/jenkins/workspace/data-flow-log-audit
+  vars_files:
+  tasks:
+  - name: 复制java包
+    copy:
+      src: "{{ item }}"
+      dest: "{{ soft_path }}/modules/"
+      force: yes
+    with_items:
+    - "{{ source_path }}/source/log_audit_base-1.0-SNAPSHOT-jar-with-dependencies.jar"
+    - "{{ source_path }}/source/log_audit-1.0-SNAPSHOT-jar-with-dependencies.jar"
+
+  - name:  复制可执行文件
+    copy:
+      src: "{{ item }}"
+      dest: "{{ soft_path }}/"
+      force: yes
+    with_items:
+    - "{{ source_path }}/source/startFlink.sh"
+
+
+  - name: chmod shell file
+    shell: "/bin/find {{ soft_path }} -name '*.sh' |/bin/xargs chmod 750"
+
+  - name: chown file owner
+    file:
+      path: "{{ soft_path }}"
+      owner: weadmin
+      group: weadmin
+      recurse: yes
+
+
+
+
+- hosts: log_audit_exe[3]
+  user: weadmin
+  vars:
+    soft_path: /opt/data-flow-log-audit
+  vars_files:
+
+  tasks:
+  - name: run shell
+    shell: "cd {{ soft_path }}; ./startFlink.sh"
